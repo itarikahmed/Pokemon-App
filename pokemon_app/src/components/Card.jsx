@@ -15,20 +15,20 @@ const Card = () => {
       const info = await axios.get(items.url);
       setMyData((data) => {
         data = [...data, info.data];
-        data.sort((a, b) => (a.id > b.id ? 1 : -1));
+
         return data;
       });
     });
   }
   useEffect(() => {
     getData();
-  }, []);
+  }, [API]);
 
   return (
-    <div className="grid grid-cols-5 absolute top-56  justify-items-center">
+    <div className="grid grid-cols-5 justify-items-center">
       {myData.map((data) => {
         return (
-          <div className="bg-white shadow-md rounded-lg m-6 w-[235px] h-[307] p-3">
+          <div className="bg-white shadow-md rounded-lg m-8 w-[235px] h-[307] p-3">
             <img
               className=" rounded-md h-[215px] w-[215px] bg-gray-100"
               src={data.sprites.other.dream_world.front_default}
