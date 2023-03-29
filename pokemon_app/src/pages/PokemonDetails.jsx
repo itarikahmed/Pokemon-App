@@ -1,8 +1,24 @@
 import React from "react";
+import useFetch from "../components/useFetch";
+import { useParams } from "react-router-dom";
 import Class from "../components/Class";
 import Info from "../components/Info";
 
 const PokemonDetails = () => {
+  const { id } = useParams;
+  const { myData } = useFetch("https://pokeapi.co/api/v2/pokemon/" + id);
+  const {
+    types: [
+      {
+        type: { name: name2 = "default" },
+      },
+    ],
+    sprites: {
+      other: {
+        dream_world: { front_default: species_name },
+      },
+    },
+  } = myData;
   return (
     <div className="flex justify-between ">
       <img className=" h-screen" src="./img/Left.png" alt="" />
@@ -14,7 +30,7 @@ const PokemonDetails = () => {
           <div className=" w-1/3">
             <div>
               <h1 className=" font-bold text-cyan-600 text-4xl my-4">
-                Balbasaur #001
+                {species_name}
               </h1>
               <p className="font-medium text-base">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -32,7 +48,7 @@ const PokemonDetails = () => {
           <div className="w-1/3">
             <h1 className="font-semibold text-2xl py-2">Type</h1>
             <div className=" flex space-x-4">
-              <Class text="Grass" />
+              <Class text={name2} />
               <Class text="poison" />
             </div>
             <h1 className="font-semibold text-2xl py-2">Weaknesses</h1>

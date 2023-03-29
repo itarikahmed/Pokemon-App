@@ -12,7 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Home />} />
-      <Route path="details" element={<PokemonDetails />} />
+      <Route path=":id" element={<PokemonDetails />} />
     </Route>
   )
 );
